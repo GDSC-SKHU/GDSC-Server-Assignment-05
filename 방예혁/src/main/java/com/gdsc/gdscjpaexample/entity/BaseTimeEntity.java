@@ -25,6 +25,7 @@ public abstract class BaseTimeEntity {
     @Column(updatable = false)
     protected LocalDateTime createDate;
 
+    // 수정일자는 계속 바뀔 수 있으니 따로 설정하지 않음
     @LastModifiedDate
     protected LocalDateTime lastModifiedDate;
 }
