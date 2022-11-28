@@ -56,7 +56,7 @@ public class TeamService {
     }
 
 
-    // id를 이용하여 팀 객체 삭제
+    //  id를 이용하여 팀 객체 삭제
     @Transactional
     public void deleteById(Long id){
         Team team = findEntityById(id);

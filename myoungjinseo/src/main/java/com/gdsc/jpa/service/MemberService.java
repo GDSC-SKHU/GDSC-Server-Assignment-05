@@ -79,7 +79,7 @@ public class MemberService {
         return memberRepository.saveAndFlush(member).toDto();
     }
 
-    // id 로 멤버 객체 삭제
+    //  id 로 멤버 객체 삭제
     @Transactional
     public void deleteById(Long id) {
         Member member = findEntityById(id);
