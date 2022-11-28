@@ -18,7 +18,8 @@ public class MemberController {
 
     // id(teamId) 값을 통해 Member 객체를 build 함
     // id(teamId), MemberDto 파라미터를 받아와서 builder 를 통해  memberService.saveByTeamId(id, request) 을 만듬
-    // /api/members/{id} uri 를 결과값으로 보낸다.
+    // /api/members/{id} uri 를 넣어준다.
+    // 응답 코드를 발생시킨다.
     @PostMapping("/teams/{id}/members")
     public ResponseEntity<MemberDTO> saveByTeamId(@PathVariable("id") Long id, @RequestBody MemberDTO request) {
         MemberDTO response = memberService.saveByTeamId(id, request);
@@ -28,7 +29,7 @@ public class MemberController {
     }
 
     // id를 받아오고 List 에 findAllByTeamId(id) 값을 넣어준다.
-    // List 가 비어 있을 경우 noContent => 201 에러 발생시킴
+    // List 가 비어 있을 경우 noContent => 204 에러 발생시킴
     // 비어 있지 않으면 200 요청 성공 코드 반환
     @GetMapping("/teams/{id}/members")
     public ResponseEntity<List<MemberDTO>> findAllByTeamId(@PathVariable("id") Long id) {
@@ -43,8 +44,8 @@ public class MemberController {
         return ResponseEntity.ok(responses);
     }
 
-    // memberService.findAll() 값을 responses에 넣어준다.
-    // List 가 비어 있을 경우 noContent => 201 에러 발생시킴
+    // memberService.findAll() 값을 responses 에 넣어준다.
+    // List 가 비어 있을 경우 noContent => 204 에러 발생시킴
     // 비어 있지 않으면 200 요청 성공 코드 반환
     @GetMapping("/members")
     public ResponseEntity<List<MemberDTO>> findAll() {
