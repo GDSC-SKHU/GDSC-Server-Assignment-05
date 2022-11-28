@@ -78,7 +78,7 @@ public class MemberController {
         return ResponseEntity.ok(response);
     }
 
-    // id, memberDto 를 받아오고 id 에 맞는 member 객체 삭제
+    // id, memberDto 를 받아오고 id 에 맞는 member 객체  삭제
     @DeleteMapping("/members/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable("id") Long id) {
         memberService.deleteById(id);

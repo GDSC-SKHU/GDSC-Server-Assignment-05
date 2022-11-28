@@ -15,7 +15,7 @@ import java.util.List;
 public class TeamController {
     private final TeamService teamService;
 
-    // teamDto 를 받아오고
+    // teamDto 를  받아오고
     // MemberDto 파라미터를 받아와서 builder 를 통해  memberService.save() 를 만듬
     // /api/teams/{id} uri 를 결과값으로 보낸다.
     @PostMapping("/teams")
