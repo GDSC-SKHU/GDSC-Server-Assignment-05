@@ -19,7 +19,7 @@ import java.util.List;
 @Builder
 public class Team extends BaseTimeEntity{
 
-    // 자동으로 Id 값이 1부터 채워진다.
+    //  자동으로 Id 값이 1부터 채워진다.
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id",nullable = false)

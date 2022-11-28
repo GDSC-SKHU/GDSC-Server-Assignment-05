@@ -27,7 +27,7 @@ public class Member  extends BaseTimeEntity{
     @Column(name = "age", nullable = false)
     private int  age;
 
-    @ManyToOne(targetEntity = Team.class, fetch = FetchType.LAZY)   // 다대일
+    @ManyToOne(targetEntity = Team.class, fetch = FetchType.LAZY)   //  다대일
     @JoinColumn(name = "team_id")
     private Team team;
 
