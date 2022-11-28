@@ -12,12 +12,12 @@ import java.time.LocalDateTime;
 
 @Getter
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor      //  기본 생성자 생성
+@AllArgsConstructor     //전체 변수를 생성해주는 생성자를 만들어준다.
 public class TeamDTO {
     private Long id;
 
-    @NotBlank
+    @NotBlank       // @NotNull = null 만  허용x @NotEmpty = null + "" 허용x @NotBlack = null + "" + " " 허용 x
     @Size(max = 150)
     private String name;
 

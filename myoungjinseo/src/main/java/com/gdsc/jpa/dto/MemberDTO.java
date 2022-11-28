@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Builder
-@NoArgsConstructor      // 기본 생성자 생성
+@NoArgsConstructor      //  기본 생성자 생성
 @AllArgsConstructor     //전체 변수를 생성해주는 생성자를 만들어준다.
 public class MemberDTO {
     private Long id;
