@@ -1,0 +1,36 @@
+# application.properties 방식: key-value 형식 사용
+# application.yml 방식: 계층구조로 설정값을 표현할 수 있고, 반복되는 접두사를 사용하지 않아도 되어 가독성이 높다.
+
+spring:
+    datasource:
+        # DB에 대한 정보를 적어서 배포하면 보안에 큰 문제가 발생한다. DB 관련 중요 정보는 환경변수를 만들어 사용한다.
+        # Edit Configurations - environment variable 설정
+        url: ${DB_URL}
+        username: ${DB_USER}
+        password: ${DB_PASSWORD}
+        driver-class-name: com.mysql.cj.jdbc.Driver         # Spring에 MySQL을 연동하기 위해 jdbc 사용
+    jpa:
+        database: mysql
+        #ORM은 객체 맵핑을 통해 자동으로 쿼리를 작성해주는데 DBMS마다 쿼리가 조금씩 다르기 떄문에 데이터베이스의 유형을 지정해준다.
+        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        hibernate:
+            # create : SessionFactory 시작시 스키마를 삭제하고 다시 생성 (데이터 유지X)
+            # create-drop: SessionFactory 종료 시 스키마를 삭제 (데이터 유지X)
+            # update: SessionFactory 연결된 DB와 비교하여 추가된 항목은 추가, 만약 같은 변수명이면 오류
+            # validate: SessionFactory 시작시 객체구성과 스키마가 다르다면 예외 발생
+            # none: 아무것도 안함
+            ddl-auto: create
+        show-sql: true      # hibernate에서 만든 SQL query문을 로그에서 볼 수 있음.
+        properties:
+            hibernate:
+                format_sql: true            # 쿼리를 가독성 높게 포맷팅
+                user_sql_comments: true     # 추가적인 주석 표시
+        # Spring Boot 2.5x 버전 이상부터는 해당 옵션 true 설정 필요함
+        defer-datasource-initialization: true       # hibernate 초기화 이전에 쿼리가 실행되면서 데이터 생성
+    sql:
+        init:
+            # ALWAYS: 모든 데이터베이스에 sql 스크립트를 동작시킨다.
+            # EMBDDED: embedded 데이터베이스만 sql 스크립트를 동작시킨다.
+            # NEVER: 모든 데이터베이스에 sql 스크립트를 동작시키지 않는다.
+            mode: always
+
