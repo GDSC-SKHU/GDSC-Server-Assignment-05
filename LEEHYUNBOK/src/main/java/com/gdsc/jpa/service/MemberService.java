@@ -23,15 +23,14 @@ public class MemberService {
 
     @Transactional
     public MemberDTO saveByTeamId(Long teamId, MemberDTO dto){
+
         Team team = findEntityByTeamId(teamId);
 
         Member member = Member.builder()
-                .name(dto.getName())
                 .age(dto.getAge())
+                .name(dto.getName())
                 .team(team)
                 .build();
-
-
 
         return memberRepository.save(member).toDTO();
     }
