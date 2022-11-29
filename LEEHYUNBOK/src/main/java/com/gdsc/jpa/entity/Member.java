@@ -35,6 +35,7 @@ public class Member extends BaseTimeEntity{
         return MemberDTO.builder()
                 .id(id)
                 .name(name)
+                .age(age)
                 .createDate(createDate)
                 .lastModifiedDate(lastModifiedDate)
                 .build();
