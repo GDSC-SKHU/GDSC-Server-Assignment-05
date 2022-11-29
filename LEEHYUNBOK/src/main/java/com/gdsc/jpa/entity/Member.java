@@ -41,5 +41,10 @@ public class Member extends BaseTimeEntity{
                 .build();
     }
 
-    public void update(MemberDTO dto) { this.name = dto.getName(); }
+    public void update(MemberDTO dto) {
+        if(dto.getName() !=null)
+            this.name = dto.getName();
+        if(dto.getAge() != null)
+            this.age = dto.getAge();
+    }
 }
