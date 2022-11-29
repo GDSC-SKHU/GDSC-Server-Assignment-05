@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>TeamController.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #808080;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+TeamController.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com.gdsc.jpa.controller</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">com.gdsc.jpa.dto.TeamDTO</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">com.gdsc.jpa.service.TeamService</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">lombok.RequiredArgsConstructor</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">org.springframework.http.ResponseEntity</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">org.springframework.web.bind.annotation.*</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">java.net.URI</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.util.List</span><span class="s0">;</span>
+
+<span class="s1">@RestController</span>
+<span class="s1">@RequiredArgsConstructor</span>
+<span class="s1">@RequestMapping(</span><span class="s2">&quot;/api&quot;</span><span class="s1">)</span>
+<span class="s0">public class </span><span class="s1">TeamController {</span>
+    <span class="s0">private final </span><span class="s1">TeamService teamService</span><span class="s0">;</span>
+
+    <span class="s3">//</span>
+    <span class="s1">@PostMapping(</span><span class="s2">&quot;/teams&quot;</span><span class="s1">)</span>
+    <span class="s0">public </span><span class="s1">ResponseEntity&lt;TeamDTO&gt; save(@RequestBody TeamDTO request){</span>
+        <span class="s1">TeamDTO response = teamService.save(request)</span><span class="s0">;</span>
+        <span class="s0">return </span><span class="s1">ResponseEntity</span>
+                <span class="s1">.created(URI.create(</span><span class="s2">&quot;/api/&quot; </span><span class="s1">+ response.getId()))</span>
+                <span class="s1">.body(response)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@GetMapping(</span><span class="s2">&quot;/teams&quot;</span><span class="s1">)</span>
+    <span class="s0">public </span><span class="s1">ResponseEntity&lt;List&lt;TeamDTO&gt;&gt; findAll(){</span>
+        <span class="s1">List&lt;TeamDTO&gt; responses = teamService.findAll()</span><span class="s0">;</span>
+
+        <span class="s0">return </span><span class="s1">ResponseEntity</span>
+                <span class="s1">.ok(responses)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@GetMapping(</span><span class="s2">&quot;/teams/{id}&quot;</span><span class="s1">)</span>
+    <span class="s0">public </span><span class="s1">ResponseEntity&lt;TeamDTO&gt; findById(@PathVariable Long id){</span>
+        <span class="s1">TeamDTO response = teamService.findById(id)</span><span class="s0">;</span>
+
+        <span class="s0">return </span><span class="s1">ResponseEntity</span>
+                <span class="s1">.ok(response)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@PatchMapping(</span><span class="s2">&quot;/teams/{id}&quot;</span><span class="s1">)</span>
+    <span class="s0">public </span><span class="s1">ResponseEntity&lt;TeamDTO&gt; updateById(@PathVariable Long id</span><span class="s0">, </span><span class="s1">@RequestBody TeamDTO request){</span>
+        <span class="s1">TeamDTO response = teamService.updateById(id</span><span class="s0">, </span><span class="s1">request)</span><span class="s0">;</span>
+
+        <span class="s0">return </span><span class="s1">ResponseEntity</span>
+                <span class="s1">.ok(response)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@DeleteMapping(</span><span class="s2">&quot;/teams/{id}&quot;</span><span class="s1">)</span>
+    <span class="s0">public </span><span class="s1">ResponseEntity&lt;Void&gt; deleteByID(@PathVariable Long id){</span>
+        <span class="s1">teamService.deleteById(id)</span><span class="s0">;</span>
+
+        <span class="s0">return </span><span class="s1">ResponseEntity.ok(</span><span class="s0">null</span><span class="s1">)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>
